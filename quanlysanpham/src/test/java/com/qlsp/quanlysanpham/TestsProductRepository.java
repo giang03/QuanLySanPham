@@ -1,7 +1,5 @@
 package com.qlsp.quanlysanpham;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -11,38 +9,34 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
 import com.qlsp.quanlysanpham.category.Category;
-import com.qlsp.quanlysanpham.category.CategoryRepository;
+import com.qlsp.quanlysanpham.product.Product;
+import com.qlsp.quanlysanpham.product.ProductRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
-public class TestsCategoryRepository {
+public class TestsProductRepository {
     @Autowired
-    private CategoryRepository repo;
+    private ProductRepository repo;
 
     @Autowired
     private TestEntityManager manager;
 
     @Test
-    public void testAddCategory(){
-        Category category = new Category("Sports");
-        repo.save(category);
-    }
-    @Test
-    public void testAddMoreCategory(){
-        Category cate = new Category("Electronic Device");
-        Category cate1 = new Category("Men's Fashion");
-        repo.saveAll(List.of(cate, cate1));
+    public void addOneProduct(){
+        Category category = manager.find(Category.class, 3);
+        Product product = new Product("Pants", category);
+        repo.save(product);
     }
 
     @Test
-    public void removeCategoryById(){
-        repo.deleteById(2);
+    public void removeProductById(){
+        repo.deleteById(1);
     }
 
     @Test
-    public void readCategoryById(){
-        Category cate = manager.find(Category.class, 2);
-        System.out.println(cate);
+    public void readProductById(){
+        Product product = manager.find(Product.class, 2);
+        System.out.println(product);
     }
 }

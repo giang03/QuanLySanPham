@@ -33,6 +33,11 @@ public class Product {
         this.category = category;
     }
 
+    public Product( String name, Category category) {
+        this.name = name;
+        this.category = category;
+    }
+
     public Integer getId() {
         return this.id;
     }
@@ -55,6 +60,11 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 
 }

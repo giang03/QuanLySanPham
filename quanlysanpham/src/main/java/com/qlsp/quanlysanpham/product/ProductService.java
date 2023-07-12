@@ -1,24 +1,34 @@
 package com.qlsp.quanlysanpham.product;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 @Service
 public class ProductService {
     @Autowired
     private ProductRepository proRepo;
 
+    public Page<Product> listAll(int pageNumber,String keyword, String sortField, String sortDir){
+        Sort sort = Sort.by(sortField);
+        sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
+        PageRequest pageRequest = PageRequest.of(pageNumber, 2, sort);
+        if(keyword.equals("null"))
+            return proRepo.findAll(pageRequest);
+        return proRepo.findAll(keyword,pageRequest);
+    }
 
-    public String listProduct(Model model){
-        PageRequest pageRequest = PageRequest.of(1, 3); 
-        Page<Product> page = proRepo.findAll(pageRequest);
-        List<Product> listProducts = page.getContent();
-        model.addAttribute("listProducts",listProducts); 
-        return "products";
+    public void save(Product product){
+        proRepo.save(product);
+    }
+
+    public void deleteProductById(int id){
+        proRepo.deleteById(id);
+    }
+
+    public Product findProductById(int id){
+        return proRepo.findById(id).get();
     }
 }

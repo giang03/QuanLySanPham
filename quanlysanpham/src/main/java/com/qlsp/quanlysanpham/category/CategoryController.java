@@ -38,7 +38,7 @@ public class CategoryController {
         model.addAttribute("categories", categories);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("totalElements", totalElements);
-        model.addAttribute("pageCurrent", pageNumber);
+        model.addAttribute("pageNumber", pageNumber);
         model.addAttribute("keyword", keyword);
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);

@@ -1,5 +1,7 @@
 package com.qlsp.quanlysanpham.category;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +20,10 @@ public class CategoryService {
         if(keyword.equals("null"))
             return cateRepo.findAll(pageRequest);
         return cateRepo.findAll(keyword,pageRequest);
+    }
+
+    public List<Category> listAll(){
+        return cateRepo.findAll();
     }
 
     public void save(Category category){

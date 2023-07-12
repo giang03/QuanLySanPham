@@ -8,18 +8,18 @@
 <body>
     <script>
     function clearFilter() {
-        window.location.href = "http://localhost:8080/categories";
+        window.location.href = "http://localhost:8080/products";
     }
     </script>
     <div align="center">
-        <h1>List Categories</h1>
+        <h1>List products</h1>
         <h2>
-            <a th:href="@{/categories/new}"> Add New Category</a>
+            <a th:href="@{/products/new}"> Add New Product</a>
         </h2>
     </div>
     <div align="center">
         <div>
-            <form th:action="@{/categories/page/1}">
+            <form th:action="@{/products/page/1}">
                 Filter : 
                 <input th:unless="${keyword.equals('null')}" type="text" name="keyword" width="80px" th:value="${keyword}" required/>&nbsp;
                 <input th:if="${keyword.equals('null')}" type="text" name="keyword" width="80px" required/>&nbsp;
@@ -33,20 +33,24 @@
         <table border="1px" cellpadding="4px" width="500px">
             <tr>
                 <th>
-                    <a th:href="@{'/categories/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=id&sortDir='+${sortDir}}">ID</a>
+                    <a th:href="@{'/products/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=id&sortDir='+${sortDir}}">ID</a>
                 </th>
                 <th>
-                    <a th:href="@{'/categories/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=name&sortDir='+${sortDir}} ">Categoy Name</a>
+                    <a th:href="@{'/products/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=name&sortDir='+${sortDir}} ">Product Name</a>
+                </th>
+                <th>
+                    <a th:href="@{'/products/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=category&sortDir='+${sortDir}} ">Categoy Name</a>
                 </th>
                 <th>Actions</th>
             </tr>
-            <th:block th:each="cate : ${categories}">
+            <th:block th:each="pro : ${listProducts}">
                 <tr align="center">
-                    <td>[[${cate.id}]]</td>
-                    <td>[[${cate.name}]]</td>
+                    <td>[[${pro.id}]]</td>
+                    <td>[[${pro.name}]]</td>
+                    <td>[[${pro.category}]]</td>
                     <td width="20%">
-                        <a th:href="@{'/categories/edit/' + ${cate.id}}">Edit</a> &nbsp;
-                        <a th:href="@{'/categories/delete/' + ${cate.id}}">Delete</a>
+                        <a th:href="@{'/products/edit/' + ${pro.id}}">Edit</a> &nbsp;
+                        <a th:href="@{'/products/delete/' + ${pro.id}}">Delete</a>
                     </td>
                 </tr>
             </th:block>
@@ -54,7 +58,7 @@
         <div>
             Total Elements : [[${totalElements}]] - Page [[${pageNumber}]]  of [[${totalPages}]] - 
             <span th:each="i : ${#numbers.sequence(1, totalPages)}">
-                <a th:if="${i != pageNumber}" th:href="@{'/categories/page/' + ${i} + '?keyword=' + ${keyword}} +'&sortField=' + ${sortField} + '&sortDir='+${sortDir}">[[${i}]]</a>
+                <a th:if="${i != pageNumber}" th:href="@{'/products/page/' + ${i} + '?keyword=' + ${keyword}} +'&sortField=' + ${sortField} + '&sortDir='+${sortDir}">[[${i}]]</a>
                 <span th:unless="${i != pageNumber}">[[${i}]]</span> &nbsp;
             </span>
         </div>

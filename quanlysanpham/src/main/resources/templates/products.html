@@ -27,7 +27,7 @@
     <div align="center">
         <h1>List products</h1>
         <h2>
-            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/new}"> Add New Product</a>
+            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/products/new}"> Add New Product</a>
         </h2>
     </div>
     <div align="center">
@@ -54,14 +54,14 @@
                 <th>
                     <a th:href="@{'/products/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=category&sortDir='+${sortDir}} ">Categoy Name</a>
                 </th>
-                <th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
             </tr>
             <th:block th:each="pro : ${listProducts}">
                 <tr align="center">
                     <td>[[${pro.id}]]</td>
                     <td>[[${pro.name}]]</td>
                     <td>[[${pro.category}]]</td>
-                    <td sec:authorize="hasRole('ROLE_ADMIN')" width="20%">
+                    <td sec:authorize="hasAuthority('ADMIN')" width="20%">
                         <a th:href="@{'/products/edit/' + ${pro.id}}">Edit</a> &nbsp;
                         <a th:href="@{'/products/delete/' + ${pro.id}}">Delete</a>
                     </td>

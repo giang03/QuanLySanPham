@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
+    
+    <script>
+        function backToProducts(){
+            window.location.href="http://localhost:8080/products";
+        }
+    </script>
     <div align="center">
         <h2>
             Add New Product
@@ -32,7 +38,8 @@
             <tr>
                 <th></th>
                 <td>
-                    <input type="submit" width="40px" th:value="Submit"/>
+                    <input type="submit" width="40px" value="Submit"/> &nbsp;
+                    <input type="button" width="40px" onclick="backToProducts()" value="Cancel"/>
                 </td>
             </tr>
         </table>

@@ -11,10 +11,23 @@
         window.location.href = "http://localhost:8080/categories";
     }
     </script>
+    <div>
+        <div align="left">
+            <form th:action="@{/}" method="get">
+                <button type="submit">Home</button>
+            </form>
+        </div>
+        <div align="right">
+            <span th:text="${#authentication.name}"></span>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
     <div align="center">
         <h1>List Categories</h1>
         <h2>
-            <a th:href="@{/categories/new}"> Add New Category</a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/categories/new}"> Add New Category</a>
         </h2>
     </div>
     <div align="center">
@@ -38,13 +51,13 @@
                 <th>
                     <a th:href="@{'/categories/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=name&sortDir='+${sortDir}} ">Categoy Name</a>
                 </th>
-                <th>Actions</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>
             </tr>
             <th:block th:each="cate : ${categories}">
                 <tr align="center">
                     <td>[[${cate.id}]]</td>
                     <td>[[${cate.name}]]</td>
-                    <td width="20%">
+                    <td sec:authorize="hasRole('ROLE_ADMIN')" width="20%">
                         <a th:href="@{'/categories/edit/' + ${cate.id}}">Edit</a> &nbsp;
                         <a th:href="@{'/categories/delete/' + ${cate.id}}">Delete</a>
                     </td>

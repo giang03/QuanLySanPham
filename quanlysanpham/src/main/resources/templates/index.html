@@ -6,6 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>My Application</h1>
+    <div align="right">
+        <span th:text="${#authentication.name}"></span>
+        <form sec:authorize="isAnonymous()">
+            <a th:href="@{/login}" type="button">Login</a>
+        </form>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+    <div align="center"> 
+        <h1>My Application</h1>
+        <h2>
+            <a th:href="@{/categories}">List Categories</a>
+        </h2>
+        <h2>
+            <a th:href="@{/products}">List Products</a>
+        </h2>
+    </div>
+
 </body>
 </html>

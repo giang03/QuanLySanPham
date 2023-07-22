@@ -11,10 +11,23 @@
         window.location.href = "http://localhost:8080/products";
     }
     </script>
+    <div>
+        <div align="left">
+            <form th:action="@{/}" method="get">
+                <button type="submit">Home</button>
+            </form>
+        </div>
+        <div align="right">
+            <span th:text="${#authentication.name}"></span>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
     <div align="center">
         <h1>List products</h1>
         <h2>
-            <a th:href="@{/products/new}"> Add New Product</a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/products/new}"> Add New Product</a>
         </h2>
     </div>
     <div align="center">
@@ -41,14 +54,14 @@
                 <th>
                     <a th:href="@{'/products/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=category&sortDir='+${sortDir}} ">Categoy Name</a>
                 </th>
-                <th>Actions</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>
             </tr>
             <th:block th:each="pro : ${listProducts}">
                 <tr align="center">
                     <td>[[${pro.id}]]</td>
                     <td>[[${pro.name}]]</td>
                     <td>[[${pro.category}]]</td>
-                    <td width="20%">
+                    <td sec:authorize="hasRole('ROLE_ADMIN')" width="20%">
                         <a th:href="@{'/products/edit/' + ${pro.id}}">Edit</a> &nbsp;
                         <a th:href="@{'/products/delete/' + ${pro.id}}">Delete</a>
                     </td>

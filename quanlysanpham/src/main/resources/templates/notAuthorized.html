@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function clearFilter() {
+        window.location.href = "http://localhost:8080/categories";
+    }
+    </script>
+    <div>
+        <div align="left">
+            <form th:action="@{/}" method="get">
+                <button type="submit">Home</button>
+            </form>
+        </div>
+        <div align="right">
+            <span th:text="${#authentication.name}"></span>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+    <div align="center">
+        <h1>Not Authorized</h1>
+    </div>
+</body>
+</html>

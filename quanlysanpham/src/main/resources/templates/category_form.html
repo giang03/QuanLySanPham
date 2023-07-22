@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
+    <script>
+        function backToCategories() {
+            window.location.href = "http://localhost:8080/categories";
+        }
+        </script>
     <div align="center">
         <h2>
             Add New Category
@@ -23,7 +28,8 @@
             <tr>
                 <th></th>
                 <td>
-                    <input type="submit" width="40px" th:value="Submit"/>
+                    <input type="submit" width="40px" th:value="Submit"/> &nbsp;
+                    <input type="button" width="40px" onclick="backToCategories()" value="Cancel"/>
                 </td>
             </tr>
         </table>

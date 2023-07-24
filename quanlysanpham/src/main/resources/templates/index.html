@@ -1,28 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head th:replace="fragments :: html_head">
     <title>Document</title>
 </head>
 <body>
-    <div align="right">
-        <span th:text="${#authentication.name}"></span>
-        <form sec:authorize="isAnonymous()">
-            <a th:href="@{/login}" type="button">Login</a>
-        </form>
-        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-            <button type="submit">Logout</button>
-        </form>
-    </div>
+    <div th:replace="fragments :: menu"/>
     <div align="center"> 
         <h1>My Application</h1>
-        <h2>
-            <a th:href="@{/categories}">List Categories</a>
-        </h2>
-        <h2>
-            <a th:href="@{/products}">List Products</a>
-        </h2>
     </div>
 
 </body>

@@ -46,17 +46,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
+            .formLogin(formLogin -> formLogin
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .permitAll()
+            )
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/categories/**","/products/edit/**","/products/delete/**").hasAuthority("ADMIN")
+                .requestMatchers("/style.css/**").permitAll()
                 .anyRequest().authenticated()
             )
             .exceptionHandling(Customizer -> Customizer
                 .accessDeniedPage("/notAuthorized")
             )
-            .formLogin(formLogin -> formLogin
-            .loginPage("/login")
-            .permitAll()
-            )
+            
             .logout(logout -> logout
                 .logoutSuccessUrl("/")
                 .permitAll()

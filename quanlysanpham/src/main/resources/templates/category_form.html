@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head th:replace="fragments :: html_head">
     <title>Document</title>
 </head>
 <body>
@@ -10,7 +8,8 @@
         function backToCategories() {
             window.location.href = "http://localhost:8080/categories";
         }
-        </script>
+    </script>
+    <div th:replace="fragments :: menu"></div>
     <div align="center">
         <h2>
             Add New Category

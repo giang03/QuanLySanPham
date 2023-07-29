@@ -15,23 +15,25 @@
             Add New Category
         </h2>
     </div>
-    <form th:action="@{/categories/save}" method="post" >
-        <table align="center" cellpadding="10px" th:object="${category}">
-            <input type="hidden" th:field="*{id}"/>
-            <tr>
-                <th>Category Name</th>
-                <td>
-                    <input type="text" width="80px" th:field="*{name}"/>
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td>
-                    <input type="submit" width="40px" th:value="Submit"/> &nbsp;
-                    <input type="button" width="40px" onclick="backToCategories()" value="Cancel"/>
-                </td>
-            </tr>
-        </table>
-    </form>
+    <div align="center" >
+        <form th:action="@{/categories/save}" method="post" >
+            <table cellpadding="10px" th:object="${category}">
+                <input type="hidden" th:field="*{id}"/>
+                <tr>
+                    <th>Category Name</th>
+                    <td>
+                        <input type="text" width="80px" th:field="*{name}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <input type="submit" width="40px" th:value="Submit"/> &nbsp;
+                        <input type="button" width="40px" onclick="backToCategories()" value="Cancel"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>

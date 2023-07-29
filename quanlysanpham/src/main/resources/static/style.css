@@ -38,8 +38,10 @@ html{
     display: inline-block;
 }
 
+
+.btn :hover,
 #nav > li:hover > a,
-#nav .subnav li:hover a {
+#nav .subnav li:hover a{
     color: #000;
     background-color: #ccc;
 }
@@ -48,6 +50,7 @@ html{
     display: block;
 }
 
+
 #nav .subnav{
     display: none;
     position: absolute;
@@ -55,8 +58,24 @@ html{
 }
 
 
-
+.btn,
 #nav .subnav a{
     color: #000;
     display: block;
+    padding: 4px 32px;
+}
+
+.btn{
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 15px 32px;
+}
+
+td img{
+    width: 100px;
+    height: auto;
 }

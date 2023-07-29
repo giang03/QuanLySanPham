@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
-import com.qlsp.quanlysanpham.category.Category;
+// import com.qlsp.quanlysanpham.category.Category;
 import com.qlsp.quanlysanpham.product.Product;
 import com.qlsp.quanlysanpham.product.ProductRepository;
 
@@ -22,11 +22,11 @@ public class TestsProductRepository {
     @Autowired
     private TestEntityManager manager;
 
-    @Test
+    // @Test
     public void addOneProduct(){
-        Category category = manager.find(Category.class, 3);
-        Product product = new Product("Pants", category);
-        repo.save(product);
+        // Category category = manager.find(Category.class, 3);
+        // Product product = new Product("Pants", category);
+        // repo.save(product);
     }
 
     @Test

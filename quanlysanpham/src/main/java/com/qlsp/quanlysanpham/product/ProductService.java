@@ -20,8 +20,8 @@ public class ProductService {
         return proRepo.findAll(keyword,pageRequest);
     }
 
-    public void save(Product product){
-        proRepo.save(product);
+    public Product save(Product product){
+        return proRepo.save(product);
     }
 
     public void deleteProductById(int id){

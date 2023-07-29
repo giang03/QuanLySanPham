@@ -4,6 +4,11 @@
     <title>Document</title>
 </head>
 <body>
+    <script>
+        function clearFilter(){
+            window.location.href = "http://localhost:8080/products";
+        };
+    </script>
     <div th:replace="fragments :: menu"/>
     <div align="center">
         <h1>List products</h1>
@@ -24,7 +29,7 @@
             </form>
             &nbsp;
         </div>
-        <table border="1px" cellpadding="4px" width="500px">
+        <table border="1px" cellpadding="4px" width="50%">
             <tr>
                 <th>
                     <a th:href="@{'/products/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=id&sortDir='+${sortDir}}">ID</a>
@@ -32,6 +37,7 @@
                 <th>
                     <a th:href="@{'/products/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=name&sortDir='+${sortDir}} ">Product Name</a>
                 </th>
+                <th>Logo</th>
                 <th>
                     <a th:href="@{'/products/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=category&sortDir='+${sortDir}} ">Categoy Name</a>
                 </th>
@@ -41,6 +47,9 @@
                 <tr align="center">
                     <td>[[${pro.id}]]</td>
                     <td>[[${pro.name}]]</td>
+                    <td>
+                        <img th:src="@{${pro.logoImagePath}}" alt="Logo goes here ..." />
+                    </td>
                     <td>[[${pro.category}]]</td>
                     <td sec:authorize="hasAuthority('ADMIN')" width="20%">
                         <a th:href="@{'/products/edit/' + ${pro.id}}">Edit</a> &nbsp;

@@ -4,44 +4,66 @@
     <title>Document</title>
 </head>
 <body>
-    
-    <script>
-        function backToProducts(){
-            window.location.href="http://localhost:8080/products";
-        }
-    </script>
     <div th:replace="fragments :: menu"></div>
     <div align="center">
         <h2>
             Add New Product
         </h2>
     </div>
-    <form th:action="@{/products/save}" method="post" >
-        <table align="center" cellpadding="10px" th:object="${product}">
-            <input type="hidden" th:field="*{id}"/>
-            <tr>
-                <th>Product Name</th>
-                <td>
-                    <input type="text" width="80px" th:field="*{name}"/>
-                </td>
-            </tr>
-            <tr>
-                <th>Category Name</th>
-                <td>
-                    <select name="category" width="80px" th:field="*{category}">
-                        <option th:each="cate : ${listCategories}" 
-                            th:value="${cate.id}" th:text="${cate.name}">
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td>
-                    <input type="submit" width="40px" value="Submit"/> &nbsp;
-                    <input type="button" width="40px" onclick="backToProducts()" value="Cancel"/>
-                </td>
-            </tr>
-        </table>
-    </form>
+    <div align="center">
+        <form  th:action="@{/products/save}" method="post" enctype="multipart/form-data" >
+            <table cellpadding="10px" th:object="${product}">
+                <input type="hidden" th:field="*{id}"/>
+                <tr>
+                    <th>Product Name</th>
+                    <td>
+                        <input type="text" width="80px" th:field="*{name}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Product Logo</th>
+                    <td>
+                        <input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg, image/jpg"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img id="thumbnail" alt="Logo Preview">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Category Name</th>
+                    <td>
+                        <select name="category" width="80px" th:field="*{category}">
+                            <option th:each="cate : ${listCategories}" 
+                                th:value="${cate.id}" th:text="${cate.name}">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <input type="submit" width="40px" value="Submit"/> &nbsp;
+                        <input type="button" width="40px" onclick="backToProducts()" value="Cancel"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
+<script>
+    function backToProducts(){
+        window.location.href = "http://localhost:8080/products";
+    };
+    let inputImg = document.getElementById("fileImage");
+    let outputImg = document.getElementById("thumbnail");
+
+    inputImg.onchange = () => {
+        let reader = new FileReader();
+        reader.readAsDataURL(inputImg.files[0]);
+        reader.onload = () => {
+            outputImg.setAttribute("src",reader.result);
+        }
+    }
+</script>
 </html>

@@ -26,8 +26,8 @@ public class CategoryService {
         return cateRepo.findAll();
     }
 
-    public void save(Category category){
-        cateRepo.save(category);
+    public Category save(Category category){
+        return cateRepo.save(category);
     }
 
     public Category getCategoryById(Integer id){

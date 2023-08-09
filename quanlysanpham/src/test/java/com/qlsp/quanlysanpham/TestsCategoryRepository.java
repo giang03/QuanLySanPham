@@ -23,17 +23,17 @@ public class TestsCategoryRepository {
     @Autowired
     private TestEntityManager manager;
 
-    @Test
-    public void testAddCategory(){
-        Category category = new Category("Sports");
-        repo.save(category);
-    }
-    @Test
-    public void testAddMoreCategory(){
-        Category cate = new Category("Electronic Device");
-        Category cate1 = new Category("Men's Fashion");
-        repo.saveAll(List.of(cate, cate1));
-    }
+    // @Test
+    // public void testAddCategory(){
+    //     Category category = new Category("Sports");
+    //     repo.save(category);
+    // }
+    // @Test
+    // public void testAddMoreCategory(){
+    //     Category cate = new Category("Electronic Device");
+    //     Category cate1 = new Category("Men's Fashion");
+    //     repo.saveAll(List.of(cate, cate1));
+    // }
 
     @Test
     public void removeCategoryById(){

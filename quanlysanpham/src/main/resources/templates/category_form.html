@@ -4,11 +4,7 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-        function backToCategories() {
-            window.location.href = "http://localhost:8080/categories";
-        }
-    </script>
+    
     <div th:replace="fragments :: menu"></div>
     <div align="center">
         <h2>
@@ -16,13 +12,25 @@
         </h2>
     </div>
     <div align="center" >
-        <form th:action="@{/categories/save}" method="post" >
+        <form th:action="@{/categories/save}" method="post" enctype="multipart/form-data" >
             <table cellpadding="10px" th:object="${category}">
                 <input type="hidden" th:field="*{id}"/>
                 <tr>
                     <th>Category Name</th>
                     <td>
                         <input type="text" width="80px" th:field="*{name}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Logo</th>
+                    <td>
+                        <input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg, image/jpg"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Preview</th>
+                    <td>
+                        <img id="thumbnail" alt="Preview logo here ....">
                     </td>
                 </tr>
                 <tr>
@@ -35,5 +43,19 @@
             </table>
         </form>
     </div>
+    <script>
+        function backToCategories() {
+            window.location.href = "http://localhost:8080/categories";
+        }
+        let inputImg = document.getElementById("fileImage");
+        let outputImg = document.getElementById("thumbnail");
+        inputImg.onchange = () => {
+            let reader = new FileReader();
+            reader.readAsDataURL(inputImg.files[0]);
+            reader.onload = () => {
+                outputImg.setAttribute("src", reader.result);
+            }
+        }
+    </script>
 </body>
 </html>

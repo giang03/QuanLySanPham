@@ -12,16 +12,19 @@
             <li><a th:href="@{/}">Home</a></li>
             <li><a th:href="@{/categories}">Categories</a></li>
             <li><a th:href="@{/products}">Products</a></li>
-            <li>
+            <li id="btnUser">
                 <th:block sec:authorize="isAnonymous()">
-                    <a href="#">Guest</a>
+                    <a>Guest</a>
                     <ul class="subnav">
                         <li><a th:href="@{/login}">Login</a></li>
                     </ul>
                 </th:block>
                 <th:block sec:authorize="isAuthenticated()">
-                    <a th:href="@{/profile}" th:text="${#authentication.name}"></a>
+                    <a th:text="${#authentication.name}"></a>
                     <ul class="subnav">
+                        <li>
+                            <a th:href="@{/profile}">Profile</a>
+                        </li>
                         <li>
                             <form th:action="@{/logout}" method="post">
                                 <button class="btn" type="submit">Logout</button>

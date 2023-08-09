@@ -39,12 +39,6 @@ html{
 }
 
 
-.btn :hover,
-#nav > li:hover > a,
-#nav .subnav li:hover a{
-    color: #000;
-    background-color: #ccc;
-}
 
 #nav > li:hover .subnav{
     display: block;
@@ -54,15 +48,16 @@ html{
 #nav .subnav{
     display: none;
     position: absolute;
-    background-color: #fff;
+    background-color: bisque;
 }
 
 
 .btn,
 #nav .subnav a{
-    color: #000;
+    color: #fff;
     display: block;
     padding: 4px 32px;
+    background-color: #302b2b;
 }
 
 .btn{
@@ -72,10 +67,21 @@ html{
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    padding: 15px 32px;
+    padding: 15px 30px;
+}
+
+
+#nav > li:hover > a,
+#nav .subnav li:hover a,.btn:hover{
+    color: #000;
+    background-color: #ccc;
 }
 
 td img{
     width: 100px;
     height: auto;
+}
+
+#btnUser{
+    margin-left: 60%;
 }

@@ -1,12 +1,18 @@
 package com.qlsp.quanlysanpham.category;
 
+import org.springframework.data.annotation.Transient;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor @NoArgsConstructor @Data
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,38 +21,16 @@ public class Category {
     @Column(length = 45, nullable = false, unique = true)
     private String name;
 
-
-    public Category() {
-    }
-
-    public Category(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Category( String name) {
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    @Column(nullable = true)
+    private String logo;
 
     @Override
     public String toString() {
         return this.name;
+    }
+    @Transient
+    public String getLogoImagePath(){
+        if(logo == null || id == null) return null;
+        return "/category_logo/" + logo;
     }
 }

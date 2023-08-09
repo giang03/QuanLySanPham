@@ -13,4 +13,9 @@ public class AppRole {
 
     @Id
     private String role;
+
+    @Override
+    public String toString(){
+        return role;
+    }
 }

@@ -32,12 +32,16 @@
                 <th>
                     <a th:href="@{'/categories/page/' + ${pageNumber} + '?keyword=' + ${keyword} +'&sortField=name&sortDir='+${sortDir}} ">Categoy Name</a>
                 </th>
+                <th>Logo</th>
                 <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
             </tr>
             <th:block th:each="cate : ${categories}">
                 <tr align="center">
                     <td>[[${cate.id}]]</td>
                     <td>[[${cate.name}]]</td>
+                    <td>
+                        <img th:src="@{${cate.logoImagePath}}" alt="Logo goes here ..." />
+                    </td>
                     <td sec:authorize="hasAuthority('ADMIN')" width="20%">
                         <a th:href="@{'/categories/edit/' + ${cate.id}}">Edit</a> &nbsp;
                         <a th:href="@{'/categories/delete/' + ${cate.id}}">Delete</a>
